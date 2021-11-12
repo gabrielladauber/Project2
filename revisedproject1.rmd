@@ -1,0 +1,89 @@
+---
+title: "Data Visualization"
+subtitle: "CPSC-292-02"
+author: "Cami Acosta"
+date: "10/14/2021"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(Unicode) 
+library(RColorBrewer)
+display.brewer.all(colorblindFriendly = TRUE)
+cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
+top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
+popularity.chart <- ggplot(data = top50, aes(x= Popularity, y= Danceability, col= Genre)) + geom_point(size=2.5) + scale_colour_manual(values=cbp1) + labs(title = "Popularity vs. Danceability in Spotify's Top 50 Songs of 2019", caption="Source: Top 50 Spotify 2019 Kaggle") + theme(plot.title = element_text(color = "#063376"))
+
+
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(dplyr))
+subgenre.table <- tibble::tribble(
+  ~"bigroom",    ~"edm", ~"hip hop & rap",  ~"pop",          ~"latin & reggaeton",
+   "Big Room",   "Edm",     "hip hop",      "Panamanian pop",    "reggaeton flow",
+   " ",        "Brostep",     "rap",        "escape room",       "reggaeton",
+   " ",          " ",     "dfw rap",        "pop house",         "latin",
+   " ",          " ",     "trap",           "australian pop",    "r&b en espanol",
+   " ",          " ",     "country rap",    "boy band",           " ",
+   " ",          " ",     "alt hip hop",    "Canadian pop",       " ",
+    " ",         " ",   "Canadian hip hop", "dance pop",          "  ",
+   " ",          " ",     " ",              "pop"      ,          " ",
+  " ",           " ",     " ",              "electropop",         " " 
+  )
+
+tab <- ggtexttable(head(subgenre.table), theme = ttheme("light"))
+tab %>%
+ tab_add_title(text = "Genre Groupings with Subgenres", face = "bold", padding = unit(0.1, "line"))
+
+
+ggarrange(popularity.chart, tab,
+         ncol = 1, nrow = 2, heights = c(1,1))
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+data <- top50
+data <- data %>% 
+  group_by(Genre) %>% 
+  count() %>% 
+  ungroup() %>% 
+  mutate(per=`n`/sum(`n`)) %>% 
+  arrange(desc(Genre))
+data$label <- scales::percent(data$per)
+ggplot(data=data)+
+  geom_bar(aes(x="", y=per, fill=Genre), stat="identity", width = 3, color = "white") +
+  coord_polar("y", start=0, direction = -1)+ scale_fill_manual(values = cbp1) +
+  theme_void()+ 
+  geom_text(aes(x=1.75, y = cumsum(per) - per/2, label=label)) + labs(fill="Genre",
+       x=NULL, 
+       y=NULL, 
+       title="Top 50 Songs on Spotify 2019 by Genre", 
+       caption="Source: Top 50 Spotify 2019 Kaggle") + theme(plot.title = element_text(color = "#063376"))
+``` 
+
+COMMENTS
+I like how easy the graphs are to understand and how you managed to add % signs to the pie chart. The only thing I would recommend is to change either the orange or pink color of the pie chart cuz they look pretty similar.
+-Lorenzo Pessi
+
+RESPONSE
+I changed the pink and orange to more contrasting colors so they were easier to differentiate from each other. They are much easier to see on the plot chart now. 
+
+Your data is visually pleasing and understandable I also appreciate the percentage on the pie chart always helpful. The only change would be to change the color on visual 1 between hip hop and latin since they appear to be very similar.
+-Amy Portillo-Ramirez
+
+RESPONSE
+I changed the color pallete overall so that the colors were more different from each other. I focused more on contrast when choosing these colors. 
+
+Colors help a lot with the visualization, and visualization 1 actually has a trend so that's cool! Would you be able to make a sub-graph that gives more information on a certain genre? That might be interesting to see.
+-Kate Sheafor
+
+RESPONSE:
+I spent a long time making a text table that shows the different subgenres and I used gg arrange to put the table with my scatter plot. The scatterplot is more compressed, but the trends are still visible and know you are also able to see which subgenres make up each genre. 
+
+
+Great job, I really like these visualizations, they are very clear and easy to understand. Love that the colors are consistent between visualizations.
+- Dr. Waldrop
+
+RESPONSE
+Even though I changed the colors in the new graphs, I made sure to keep them the same for both visualizations.
