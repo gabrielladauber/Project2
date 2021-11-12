@@ -1,0 +1,25 @@
+---
+title: "Project2"
+author: "Gabriella Dauber"
+date: "11/12/2021"
+output: html_document
+---
+
+```{r}
+
+#practice code for cami 
+
+
+```
+
+```{r}
+
+
+
+```
+
+```{r}
+
+
+
+```
