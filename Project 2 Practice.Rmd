@@ -7,7 +7,7 @@ output: html_document
 
 ```{r}
 
-#practice code for cami 
+#practice code for cambam 
 
 
 ```
