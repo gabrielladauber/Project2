@@ -7,10 +7,7 @@ output: html_document
 
 ```{r}
 haha
-#practice code for cambam 
-lols
-thisisitagain
-secondtime
+
   
 
 
@@ -28,6 +25,16 @@ spotify.plot <- function(xpos, ypos){
 spotify.plot("Popularity", "Danceability")
 
 ```
+
+```{r}
+library(ggplot2)
+top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
+cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
+
+spotify.plot("Energy", "Beats.Per.Minute")
+```
+
+
 ```{r}
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 data <- top50
