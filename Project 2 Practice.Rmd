@@ -7,6 +7,24 @@ output: html_document
 
 ```{r}
 
+
+cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
+
+genretest <- function(genre.label){
+  songs <- switch(genre.label,
+                  "midnightblue" = "big room",
+                  "limegreen" = "edm",
+                  "#E7B800" = "hip hop & rap",
+                  "deeppink1" = "latin & reggaeton",
+                  "#00AFBB" = "pop"
+                  )
+  return(songs)
+}
+genretest("limegreen")
+genretest("deeppink1")
+
+
+```
 ```
 
 ```{r}
