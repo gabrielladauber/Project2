@@ -39,7 +39,13 @@ spotify.plot("Energy", "Beats.Per.Minute")
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 data <- top50
 
-ifelse(data > 80, "Get up and dance!", "Don't dance")
+ifelse(top50$Beats.Per.Minute[1] > 100, "Get up and dance!", "Don't dance")
+ifelse(top50$Beats.Per.Minute[2] > 100, "Get up and dance!", "Don't dance")
+ifelse(top50$Beats.Per.Minute[3] > 100, "Get up and dance!", "Don't dance")
+ifelse(top50$Beats.Per.Minute[4] > 100, "Get up and dance!", "Don't dance")
+ifelse(top50$Beats.Per.Minute[5] > 100, "Get up and dance!", "Don't dance")
+ifelse(top50$Beats.Per.Minute[6] > 100, "Get up and dance!", "Don't dance")
+ifelse(top50$Beats.Per.Minute[7] > 100, "Get up and dance!", "Don't dance")
 
 ```
 
@@ -47,16 +53,9 @@ ifelse(data > 80, "Get up and dance!", "Don't dance")
 #### Conditional Statement ####
 
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-
 data <- top50
 
-if(data == "Ariana Grande") {
-  print("You are popular!")
-} else { 
-  print("You are not as popular as Ariana Grande")
-}
-
-ifelse(data == "Ariana Grande", "You are popular!", "You are not as popular as Ariana Grande")
+ifelse(top50$Artist.Name == "Ariana Grande", "You are popular!", "You are not as popular as Ariana Grande")
 
 ```
 
