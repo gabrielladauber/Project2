@@ -41,7 +41,7 @@ top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 
 data <- top50
 
-if(data == Ariana Grande) {
+if(data == "Ariana Grande") {
   print("You are popular!")
 } else { 
   print("You are not as popular as Ariana Grande")
