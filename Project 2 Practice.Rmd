@@ -28,9 +28,11 @@ spotify.plot <- function(xpos, ypos){
 spotify.plot("Popularity", "Danceability")
 
 ```
-
 ```{r}
+top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
+data <- top50
 
+ifelse(data > 80, "Get up and dance!", "Don't dance")
 
 ```
 
