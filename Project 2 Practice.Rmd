@@ -6,10 +6,6 @@ output: html_document
 ---
 
 ```{r}
-haha
-
-  
-
 
 ```
 
@@ -39,13 +35,14 @@ spotify.plot("Energy", "Beats.Per.Minute")
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 data <- top50
 
-ifelse(top50$Beats.Per.Minute[1] > 100, "Get up and dance!", "Don't dance")
+ifelse(top50$Beats.Per.Minute > 100, "Get up and dance!", "Don't dance")
 ifelse(top50$Beats.Per.Minute[2] > 100, "Get up and dance!", "Don't dance")
 ifelse(top50$Beats.Per.Minute[3] > 100, "Get up and dance!", "Don't dance")
 ifelse(top50$Beats.Per.Minute[4] > 100, "Get up and dance!", "Don't dance")
 ifelse(top50$Beats.Per.Minute[5] > 100, "Get up and dance!", "Don't dance")
 ifelse(top50$Beats.Per.Minute[6] > 100, "Get up and dance!", "Don't dance")
 ifelse(top50$Beats.Per.Minute[7] > 100, "Get up and dance!", "Don't dance")
+ifelse(top50$Beats.Per.Minute[8] > 100, "Get up and dance!", "Don't dance")
 
 ```
 
@@ -55,7 +52,15 @@ ifelse(top50$Beats.Per.Minute[7] > 100, "Get up and dance!", "Don't dance")
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 data <- top50
 
-ifelse(top50$Artist.Name == "Ariana Grande", "You are popular!", "You are not as popular as Ariana Grande")
+ifelse(top50$Danceability > 70, "Dance", "Don't dance") 
+ifelse(top50$Beats.Per.Minute > 100, "Dance", "Don't dance")
+
+if(top50$Danceability > 70) {
+  print("Dance")
+}
+
+switch(top50$Danceability > 70
+       )
 
 ```
 
