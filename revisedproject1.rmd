@@ -7,8 +7,6 @@ output: html_document
 ---
 
 ```{r}
-#beepboop
-hahah
 library(ggplot2)
 library(Unicode) 
 library(RColorBrewer)
