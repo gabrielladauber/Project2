@@ -22,7 +22,7 @@ top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
 
 spotify.plot <- function(xpos, ypos){
-  ggplot(top50, aes_string(x = xpos, y = ypos, fill = "Genre")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) + scale_colour_manual(values=cbp1)
+  ggplot(top50, aes_string(x = xpos, y = ypos, color = "Genre", fill = "Genre")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) + scale_colour_manual(values=cbp1)
 }
 
 spotify.plot("Popularity", "Danceability")
