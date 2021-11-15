@@ -47,5 +47,7 @@ if(data == "Ariana Grande") {
   print("You are not as popular as Ariana Grande")
 }
 
+ifelse(data == "Ariana Grande", "You are popular!", "You are not as popular as Ariana Grande")
+
 ```
 
