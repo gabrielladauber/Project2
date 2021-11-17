@@ -25,7 +25,27 @@ genretest("deeppink1")
 
 
 ```
+
+```{r}
+
+cpb2 <- c("pop", "latin & reggaeton", "hip hop & rap", "edm", "big room")
+
+artist.test <- function(artist.label){
+  artist <- switch(artist.label,
+                   "pop" = "Shawn Mendes", "Ariana Grande",
+                   "latin & reggaeton" = "Anuel AA", 
+                   "hip hop & rap" = "Post Malone", 
+                   "edm" = "The Chainsmokers", 
+                   "big room" = "Martin Garrix"
+                   )
+  return(artist)
+}
+
+artist.test("pop")
+artist.test("edm")
+
 ```
+
 
 ```{r}
 library(ggplot2)
