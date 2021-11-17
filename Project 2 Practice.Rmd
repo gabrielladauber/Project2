@@ -7,7 +7,7 @@ output: html_document
 
 ```{r}
 
-#### conditional ####
+##### Conditional #####
 
 cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
 
@@ -25,7 +25,7 @@ genretest("limegreen")
 genretest("deeppink1")
 
 
-#### loop ####
+##### Loop #####
 
 colorstogenres <- rep(NA, length(cbp1))
 for (k in 1:length(cbp1)){
@@ -37,6 +37,40 @@ colorstogenres
 ```
 
 ```{r}
+
+##### function #####
+
+library(ggplot2)
+top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
+cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
+
+spotify.plot <- function(xpos, ypos){
+  ggplot(top50, aes_string(x = xpos, y = ypos, color = "Genre", fill = "Genre")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) + scale_colour_manual(values=cbp1)
+}
+
+spotify.plot("Popularity", "Danceability")
+
+```
+
+```{r}
+
+##### function #####
+
+library(ggplot2)
+top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
+cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
+
+spotify.plot("Energy", "Beats.Per.Minute")
+
+```
+```{r}
+
+####### IGNORE EVERYTHING BELOW THIS SCRIPT (practice) ######
+
+```
+
+```{r}
+#Conditional
 
 cpb2 <- c("pop", "latin & reggaeton", "hip hop & rap", "edm", "big room")
 
@@ -56,35 +90,9 @@ artist.test("edm")
 
 ```
 
-
 ```{r}
-library(ggplot2)
-top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
+#Conditional 
 
-spotify.plot <- function(xpos, ypos){
-  ggplot(top50, aes_string(x = xpos, y = ypos, color = "Genre", fill = "Genre")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) + scale_colour_manual(values=cbp1)
-}
-
-spotify.plot("Popularity", "Danceability")
-
-```
-
-```{r}
-library(ggplot2)
-top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
-
-spotify.plot("Energy", "Beats.Per.Minute")
-```
-
-```{r}
-
-
-```
-
-
-```{r}
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 data <- top50
 
@@ -100,7 +108,7 @@ ifelse(top50$Beats.Per.Minute[8] > 100, "Get up and dance!", "Don't dance")
 ```
 
 ```{r}
-#### Conditional Statement ####
+#Conditional  
 
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 data <- top50
