@@ -7,6 +7,7 @@ output: html_document
 
 ```{r}
 
+#### conditional ####
 
 cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
 
@@ -23,6 +24,15 @@ genretest <- function(genre.label){
 genretest("limegreen")
 genretest("deeppink1")
 
+
+#### loop ####
+
+colorstogenres <- rep(NA, length(cbp1))
+for (k in 1:length(cbp1)){
+  colorstogenres[k] <- genretest(cbp1[k])
+}
+
+colorstogenres
 
 ```
 
@@ -66,6 +76,11 @@ top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
 
 spotify.plot("Energy", "Beats.Per.Minute")
+```
+
+```{r}
+
+
 ```
 
 
