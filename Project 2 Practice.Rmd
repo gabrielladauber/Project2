@@ -130,22 +130,12 @@ switch(top50$Danceability > 70
 ```{r}
 library(ggplot2)
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
+str(top50)
 
-pop_frame <- c(top50$Popularity[1:50])
-
-conditional_pop <- if( pop_frame >= 85){
-  "popular"
-} 
-if ( pop_frame < 85){
-  "unpopular"
-} 
-
-
-popular <- ifelse(top50$Popularity >= 85, TRUE, FALSE)
+top50$Pop.bin <- ifelse(top50$Popularity >= 85, "green", "blue")
 
 spotify.plot <- function(xpos, ypos){
-  ggplot("popular", aes_string(x = xpos, y = ypos, color = "Genre", fill = "Genre")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) + scale_colour_manual(values=cbp1)
+  ggplot(top50, aes_string(x = xpos, y = ypos, color = "Pop.bin")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) 
 }
 
 spotify.plot("Popularity", "Danceability")
