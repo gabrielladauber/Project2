@@ -13,30 +13,18 @@ cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
 
 genretest <- function(genre.label){
   songs <- switch(genre.label,
-                  "midnightblue" = "big room",
-                  "limegreen" = "edm",
-                  "#E7B800" = "hip hop & rap",
-                  "deeppink1" = "latin & reggaeton",
-                  "#00AFBB" = "pop"
+                  "bigoom" = "midnightblue",
+                  "edm" = "limegreen",
+                  "hip hop & rap" = "E7B800",
+                  "latin & reggaeton" = "deeppink1",
+                  "pop" = "#00AFBB"
                   )
   return(songs)
 }
-genretest("limegreen")
-genretest("deeppink1")
+genretest("pop")
+genretest("edm")
 ```
 
-##### Loop #####
-
-```{r}
-
-colors_to_genres <- rep(NA, length(cbp1))
-for (k in 1:length(cbp1)){
-  colors_to_genres[k] <- genretest(cbp1[k])
-}
-
-colors_to_genres
-
-```
 
 ```{r}
 
@@ -65,11 +53,7 @@ cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
 spotify.plot("Energy", "Beats.Per.Minute")
 
 ```
-```{r}
 
-####### IGNORE EVERYTHING BELOW THIS SCRIPT (practice) ######
-
-```
 
 ```{r}
 #Conditional
@@ -92,57 +76,44 @@ artist.test("edm")
 
 ```
 
-```{r}
-#Conditional 
 
-top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-data <- top50
-
-ifelse(top50$Beats.Per.Minute > 100, "Get up and dance!", "Don't dance")
-ifelse(top50$Beats.Per.Minute[2] > 100, "Get up and dance!", "Don't dance")
-ifelse(top50$Beats.Per.Minute[3] > 100, "Get up and dance!", "Don't dance")
-ifelse(top50$Beats.Per.Minute[4] > 100, "Get up and dance!", "Don't dance")
-ifelse(top50$Beats.Per.Minute[5] > 100, "Get up and dance!", "Don't dance")
-ifelse(top50$Beats.Per.Minute[6] > 100, "Get up and dance!", "Don't dance")
-ifelse(top50$Beats.Per.Minute[7] > 100, "Get up and dance!", "Don't dance")
-ifelse(top50$Beats.Per.Minute[8] > 100, "Get up and dance!", "Don't dance")
-
-```
 
 ```{r}
-#Conditional  
+#dance conditional into spotify_plot function
 
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-data <- top50
+
+
 library(ggplot2)
-top50$dance_bin <- ifelse(top50$Danceability > 70, "Dance", "Don't dance") 
 
-spotify.plot <- function(xpos, ypos){
-  ggplot(top50, aes_string(x = xpos, y = ypos, color = "dance_bin")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) 
+top50$dance_bin <- ifelse(top50$Danceability > 70, "Dance", "Don't Dance") 
+
+spotify_plot <- function(xpos, ypos){
+  ggplot(top50, aes_string(x = xpos, y = ypos, color = "dance_bin")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos))
 }
 
-spotify.plot("Popularity", "Beats.Per.Minute")
+spotify_plot("Popularity", "Beats.Per.Minute")
 ifelse(top50$Beats.Per.Minute > 100, "Dance", "Don't dance")
 
-if(top50$Danceability > 70) {
-  print("Dance")
-}
 
 ```
 
 ```{r}
+# popularity condition in spotify_plot function
+
 library(ggplot2)
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 str(top50)
 
-top50$Pop.bin <- ifelse(top50$Popularity >= 85, "cyan", "coral")
+top50$Pop.bin <- ifelse(top50$Popularity >= 85, "Popular", "Unpopular")
 
-spotify.plot <- function(xpos, ypos){
+spotify_plot <- function(xpos, ypos){
   ggplot(top50, aes_string(x = xpos, y = ypos, color = "Pop.bin")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) 
 }
 
-spotify.plot("Popularity", "Danceability")
-spotify.plot("Popularity", "Beats.Per.Minute")
+spotify_plot("Danceability", "Beats.Per.Minute")
+spotify_plot("Popularity", "Danceability")
+
 ```
 
 
