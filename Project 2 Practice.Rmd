@@ -1,6 +1,6 @@
 ---
 title: "Project2"
-author: "Gabriella Dauber"
+author: "Gabriella Dauber and Cami Acosta"
 date: "11/12/2021"
 output: html_document
 ---
