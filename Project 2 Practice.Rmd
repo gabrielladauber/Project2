@@ -46,12 +46,4 @@ spotify_plot("Danceability", "Beats.Per.Minute")
 ```
 
 
-```{r}
-library(ggplot2)
-ggplot(top50, aes(top50, x = "Popularity", y = "Danceability", colour = Popularity >= 85)) + geom_point() +
-  scale_colour_manual(name = 'Popularity > 85', values = setNames(c('red','green'),c(T, F))) +
-  xlab('Popularity') + ylab('Danceability')
-```
-
-
 
