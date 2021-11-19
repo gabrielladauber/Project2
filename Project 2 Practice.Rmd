@@ -114,16 +114,19 @@ ifelse(top50$Beats.Per.Minute[8] > 100, "Get up and dance!", "Don't dance")
 
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 data <- top50
+library(ggplot2)
+top50$dance_bin <- ifelse(top50$Danceability > 70, "Dance", "Don't dance") 
 
-ifelse(top50$Danceability > 70, "Dance", "Don't dance") 
+spotify.plot <- function(xpos, ypos){
+  ggplot(top50, aes_string(x = xpos, y = ypos, color = "dance_bin")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) 
+}
+
+spotify.plot("Popularity", "Beats.Per.Minute")
 ifelse(top50$Beats.Per.Minute > 100, "Dance", "Don't dance")
 
 if(top50$Danceability > 70) {
   print("Dance")
 }
-
-switch(top50$Danceability > 70
-       )
 
 ```
 
