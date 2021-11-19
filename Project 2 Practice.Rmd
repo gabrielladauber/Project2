@@ -6,42 +6,6 @@ output: html_document
 ---
 
 ```{r}
-#dance conditional into spotify_plot function
-
-top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-
-
-library(ggplot2)
-
-top50$dance_bin <- ifelse(top50$Danceability > 70, "Dance", "Don't Dance") 
-
-spotify_plot <- function(xpos, ypos){
-  ggplot(top50, aes_string(x = xpos, y = ypos, color = "dance_bin")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos))
-}
-
-spotify_plot("Popularity", "Beats.Per.Minute")
-ifelse(top50$Beats.Per.Minute > 100, "Dance", "Don't dance")
-
-```
-
-```{r}
-# popularity condition in spotify_plot function
-
-library(ggplot2)
-top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-str(top50)
-
-top50$Pop.bin <- ifelse(top50$Popularity >= 85, "Popular", "Unpopular")
-
-spotify_plot <- function(xpos, ypos){
-  ggplot(top50, aes_string(x = xpos, y = ypos, color = "Pop.bin")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) 
-}
-
-spotify_plot("Danceability", "Beats.Per.Minute")
-
-```
-
-```{r}
 #NEW CODE
 #dance and genre conditional into spotify_plot function
 
