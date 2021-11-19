@@ -132,12 +132,23 @@ library(ggplot2)
 top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
 str(top50)
 
-top50$Pop.bin <- ifelse(top50$Popularity >= 85, "blue", "pink")
+top50$Pop.bin <- ifelse(top50$Popularity >= 85, "cyan", "coral")
 
 spotify.plot <- function(xpos, ypos){
   ggplot(top50, aes_string(x = xpos, y = ypos, color = "Pop.bin")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) 
 }
 
 spotify.plot("Popularity", "Danceability")
+spotify.plot("Popularity", "Beats.Per.Minute")
 ```
+
+
+```{r}
+library(ggplot2)
+ggplot(top50, aes(top50, x = "Popularity", y = "Danceability", colour = Popularity >= 85)) + geom_point() +
+  scale_colour_manual(name = 'Popularity > 85', values = setNames(c('red','green'),c(T, F))) +
+  xlab('Popularity') + ylab('Danceability')
+```
+
+
 
