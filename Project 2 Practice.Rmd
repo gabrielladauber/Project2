@@ -5,77 +5,6 @@ date: "11/12/2021"
 output: html_document
 ---
 
-```{r}
-
-##### Conditional #####
-
-cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
-
-genretest <- function(genre.label){
-  songs <- switch(genre.label,
-                  "bigoom" = "midnightblue",
-                  "edm" = "limegreen",
-                  "hip hop & rap" = "E7B800",
-                  "latin & reggaeton" = "deeppink1",
-                  "pop" = "#00AFBB"
-                  )
-  return(songs)
-}
-genretest("pop")
-genretest("edm")
-```
-
-
-```{r}
-
-##### function #####
-
-library(ggplot2)
-top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
-
-spotify.plot <- function(xpos, ypos){
-  ggplot(top50, aes_string(x = xpos, y = ypos, color = "Genre", fill = "Genre")) + geom_point(size = 3) + xlab(sub("[.]", " ", xpos)) + ylab(sub("[.]", " ", ypos)) + scale_colour_manual(values=cbp1)
-}
-
-spotify.plot("Popularity", "Danceability")
-
-```
-
-```{r}
-
-##### function #####
-
-library(ggplot2)
-top50 <- read.csv("top50cleanspotify.csv", encoding = "Windows-1252")
-cbp1 <- c("midnightblue", "limegreen", "#E7B800", "deeppink1", "#00AFBB")
-
-spotify.plot("Energy", "Beats.Per.Minute")
-
-```
-
-
-```{r}
-#Conditional
-
-cpb2 <- c("pop", "latin & reggaeton", "hip hop & rap", "edm", "big room")
-
-artist.test <- function(artist.label){
-  artist <- switch(artist.label,
-                   "pop" = "Shawn Mendes", "Ariana Grande",
-                   "latin & reggaeton" = "Anuel AA", 
-                   "hip hop & rap" = "Post Malone", 
-                   "edm" = "The Chainsmokers", 
-                   "big room" = "Martin Garrix"
-                   )
-  return(artist)
-}
-
-artist.test("pop")
-artist.test("edm")
-
-```
-
 
 
 ```{r}
@@ -112,7 +41,7 @@ spotify_plot <- function(xpos, ypos){
 }
 
 spotify_plot("Danceability", "Beats.Per.Minute")
-spotify_plot("Popularity", "Danceability")
+
 
 ```
 
